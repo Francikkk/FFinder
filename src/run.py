@@ -2,7 +2,7 @@ import sys
 
 from PySide6.QtWidgets import QApplication
 
-from view import MainWindow
+from src.view import MainWindow
 
 # ----------------------------
 # Main entry

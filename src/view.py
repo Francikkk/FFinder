@@ -22,9 +22,9 @@ from PySide6.QtWidgets import (
     QWidget,
 )
 
-from controller import SearchController
-from model import ResultsTableModel
-from utilities import SearchRecord, open_in_file_manager_select
+from src.controller import SearchController
+from src.model import ResultsTableModel
+from src.utilities import SearchRecord, open_in_file_manager_select
 
 # ----------------------------
 # View
