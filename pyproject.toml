@@ -1,0 +1,216 @@
+[build-system]
+requires = ["setuptools>=80.9"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "JustPingIt"
+description = "Network host pinger with a simple CLI interface"
+version = "1.0.0"
+requires-python = ">=3.12"
+readme = "README.md"
+authors = [{ name = "Francesco Brunetti", email = "gestione.franci@gmail.com" }]
+maintainers = [
+    { name = "Francesco Brunetti", email = "gestione.franci@gmail.com" },
+]
+license = { file = "LICENSE" }
+dependencies = [
+    "PySide6>=6.8.2.1",
+    "PySide6_Addons>=6.8.2.1",
+    "PySide6_Essentials>=6.8.2.1",
+    "markdown>=3.8.2",
+]
+[project.optional-dependencies]
+dev = [
+    "PySide6>=6.8.2.1",
+    "PySide6_Addons>=6.8.2.1",
+    "PySide6_Essentials>=6.8.2.1",
+    "PySide6-stubs>=6.7.3.0",
+    "markdown>=3.8.2",
+    "black>=25.1.0",
+    "mypy>=1.16.1",
+    "isort>=6.0.1",
+    "ruff>=0.12.2",
+    "bandit>=1.8.6",
+    "pre-commit>=4.2.0",
+    "coverage>=7.9.2",
+    "pytest>=8.4.1",
+    "pytest-qt>=4.5.0",
+    "pytest-cov>=6.2.1",
+    "setuptools>=80.9.0",
+
+]
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+[tool.setuptools.packages.find]
+where = ["src"]
+
+
+[tool.mypy] # Mypy configuration for type checking
+files = ["src"]
+python_version = "3.12"
+strict = true
+ignore_missing_imports = true
+disallow_untyped_defs = true # Disallow functions without type hints
+warn_unused_ignores = true # Catch useless `# type: ignore`
+warn_return_any = true # Warn if returning `Any`
+no_implicit_optional = true # Disallow Optional inference from default None
+show_error_codes = true # Show Mypy error codes
+pretty = true # Nicer output formatting
+explicit_package_bases = true
+exclude = '''(?x)(
+    ^\.venv/
+  | ^\.vscode/
+  | ^build/
+  | ^dist/
+  | ^data/
+  | ^.*__pycache__/
+  | ^\.mypy_cache/
+  | ^\.pytest_cache/
+  | ^\.ruff_cache/
+  | ^.*\.pyc$
+  | ^.*\.pyo$
+  | ^.*\.pyd$
+  | ^.*\.so$
+  | ^.*\.dll$
+  | ^.*\.json$
+  | ^.*\.yaml$
+  | ^.*\.toml$
+  | ^\.coverage$
+  | ^\.env$
+  | ^\.gitignore$
+  | ^\.pre\-commit\-config\.yaml$
+  | ^LICENSE$
+  | ^pyproject\.toml$
+  | ^README\.md$
+  | ^requirements(\-dev)?\.txt$
+)'''
+
+[tool.black] # Black configuration for code formatting
+line-length = 79
+target-version = ['py312']
+quiet = true
+exclude = '''
+/(
+    \.venv
+  | \.vscode
+  | build
+  | dist
+  | data
+  | __pycache__
+  | \.mypy_cache
+  | \.pytest_cache
+  | \.ruff_cache
+  | \.coverage
+  | \.env
+  | \.gitignore
+  | \.pre\-commit\-config\.yaml
+  | LICENSE
+  | pyproject\.toml
+  | README\.md
+  | requirements(\-dev)?\.txt
+)/
+'''
+include = '''
+^src/
+^tests/
+'''
+
+[tool.isort] # isort configuration for import sorting
+src_paths = ["src", "tests"]
+profile = "black"
+line_length = 79
+skip = [
+    ".venv",
+    ".vscode",
+    "build",
+    "dist",
+    "data",
+    "__pycache__",
+    ".mypy_cache",
+    ".pytest_cache",
+    ".ruff_cache",
+    ".coverage",
+    ".env",
+    ".gitignore",
+    ".pre-commit-config.yaml",
+    "LICENSE",
+    "pyproject.toml",
+    "README.md",
+    "requirements.txt",
+    "requirements-dev.txt",
+
+]
+
+[tool.ruff] # Ruff configuration for linting and formatting
+line-length = 79
+fix = true
+target-version = "py312"
+src = ["src", "tests"]
+[tool.ruff.lint]
+select = ["E", "W", "F", "B", "C90", "I", "UP", "N", "S"]
+ignore = ["E203", "B008", "B006"]
+exclude = [
+    ".venv",
+    ".vscode",
+    "build",
+    "dist",
+    "data",
+    "tests",
+    "__pycache__",
+    ".ruff_cache",
+    ".mypy_cache",
+    ".pytest_cache",
+    ".coverage",
+    ".env",
+    ".gitignore",
+    ".pre-commit-config.yaml",
+    "LICENSE",
+    "pyproject.toml",
+    "README.md",
+    "requirements.txt",
+    "requirements-dev.txt",
+
+]
+[tool.ruff.lint.per-file-ignores]
+"tests/*.py" = ["S101", "F841", "N806"]
+
+
+[tool.bandit] # Bandit configuration for security checks
+targets = ["src/"]
+exclude_dirs = [
+    ".venv/",
+    ".vscode/",
+    "build/",
+    "dist/",
+    "tests/",
+    "__pycache__/",
+    ".mypy_cache/",
+    ".pytest_cache/",
+    ".ruff_cache/",
+    ".coverage",
+    ".env",
+    ".gitignore",
+    ".pre-commit-config.yaml",
+    "LICENSE",
+    "pyproject.toml",
+    "README.md",
+    "requirements.txt",
+    "requirements-dev.txt",
+
+]
+recursive = true
+
+[tool.pytest.ini_options]
+minversion = "8.4"
+addopts = "-ra -q --cov=JustPingIt --cov-report=term-missing"
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+
+[tool.coverage.run]
+branch = true
+source = ["JustPingIt"]
+[tool.coverage.report]
+omit = ["tests/*", "*/__init__.py", "*/__main__.py"]

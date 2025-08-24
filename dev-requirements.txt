@@ -1,0 +1,16 @@
+pandas
+tabulate
+PySide6
+PySide6-stubs
+markdown
+black
+mypy
+isort
+ruff
+bandit
+pre-commit
+coverage
+pytest
+pytest-qt
+pytest-cov
+setuptools

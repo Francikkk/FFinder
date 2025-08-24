@@ -1,2 +1,4 @@
 pandas
 tabulate
+PySide6
+PySide6-stubs
