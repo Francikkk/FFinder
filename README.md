@@ -1,7 +1,7 @@
 
 # FFinder
 
-<img src="./data/img/logo_transparent.png" width="150" />
+<img src="./data/img/logo.png" width="150" />
 
 FFinder is a simple desktop tool for quickly searching text inside files or file names within a chosen folder.  
 It’s built with **PySide6 (Qt for Python)** and provides a fast, user-friendly interface.
