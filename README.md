@@ -1,6 +1,4 @@
 
-# FFinder
-
 <img src="./data/img/logo.png" width="150" />
 
 FFinder is a simple desktop tool for quickly searching text inside files or file names within a chosen folder.  
