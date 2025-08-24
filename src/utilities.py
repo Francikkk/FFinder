@@ -1,9 +1,53 @@
 import os
 import platform
 import subprocess
+import sys
 from dataclasses import dataclass
 
-DEFAULT_EXTENSIONS = [".config", ".xml", ".json", ".ini"]
+# ----------------------------
+# Constants
+# ----------------------------
+
+
+DEFAULT_EXTENSIONS = [
+    ".config",
+    ".xml",
+    ".json",
+    ".ini",
+    ".yaml",
+    ".yml",
+    ".toml",
+    ".cfg",
+    ".txt",
+]
+
+
+# ----------------------------
+# Constants
+# ----------------------------
+
+
+def resource_path(relative_path: str) -> str:
+    """
+    Get absolute path to a resource, works in development and
+    PyInstaller-built exe.
+    """
+    base_path = getattr(sys, "_MEIPASS", os.path.abspath("."))
+    return os.path.join(base_path, relative_path)
+
+
+# ----------------------------
+# Data structures
+# ----------------------------
+
+
+@dataclass
+class SearchRecord:
+    occurrences: int
+    file: str
+    line_number: int | None  # None means "match in filename"
+    line_text: str
+
 
 # ----------------------------
 # Utilities (shared by MVC)
@@ -67,16 +111,3 @@ def open_in_file_manager_select(path: str) -> None:
             subprocess.Popen(["xdg-open", folder])  # noqa S607
         except Exception as e:
             print(f"Error opening xdg-open: {e}")
-
-
-# ----------------------------
-# Data structures
-# ----------------------------
-
-
-@dataclass
-class SearchRecord:
-    occurrences: int
-    file: str
-    line_number: int | None  # None means "match in filename"
-    line_text: str

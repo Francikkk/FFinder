@@ -32,12 +32,9 @@ from src.utilities import SearchRecord, open_in_file_manager_select
 
 
 class MainWindow(QMainWindow):
-    def __init__(self) -> None:
+    def __init__(self, logo_path: str) -> None:
         super().__init__()
         self.setWindowTitle("FFinder")
-        logo_path = os.path.join(
-            os.path.dirname(__file__), "../data/img/icon.png"
-        )
         self.setWindowIcon(QIcon(logo_path))
         self.resize(1100, 700)
 
@@ -67,7 +64,19 @@ class MainWindow(QMainWindow):
         self.ext_combo = QComboBox(self)
         self.ext_combo.setEditable(True)
         self.ext_combo.addItems(
-            ["config,xml,json,ini", "xml", "json", "ini", "config", "*"]
+            [
+                "config,xml,json,ini",
+                "xml",
+                "json",
+                "ini",
+                "config",
+                "yaml",
+                "yml",
+                "toml",
+                "cfg",
+                "txt",
+                "*",
+            ]
         )
         self.include_names_check = QCheckBox(
             "Include matches from file names", self

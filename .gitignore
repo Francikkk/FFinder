@@ -8,6 +8,7 @@ build/
 dist/
 *.egg-info/
 *.spec
+pyinstallercommand.txt
 
 # Installer logs
 pip-log.txt
