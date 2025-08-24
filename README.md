@@ -1,7 +1,7 @@
 
 <img src="./data/img/logo.png" width="150" />
 
-FFinder is a simple desktop tool for quickly searching text inside files or file names within a chosen folder.  
+FFinder is a simple desktop tool for quickly searching text inside files or file names within a chosen folder.
 It’s built with **PySide6 (Qt for Python)** and provides a fast, user-friendly interface.
 
 ---
@@ -12,14 +12,14 @@ It’s built with **PySide6 (Qt for Python)** and provides a fast, user-friendly
 ---
 
 ## ✨ Features
-- 🔍 Search for text in files and/or file names  
-- 📂 Recursive folder scanning with progress updates  
-- 📝 Results shown in a sortable table (occurrences, file path, line number, preview)  
+- 🔍 Search for text in files and/or file names
+- 📂 Recursive folder scanning with progress updates
+- 📝 Results shown in a sortable table (occurrences, file path, line number, preview)
 - 📑 Double-click results to:
-  - open file in an internal viewer (with highlights + jump to line)  
-  - open file location in system file manager  
-- ⚙️ Configurable file extensions (CSV list or `*` for defaults)  
-- Cross-platform: Windows, macOS, Linux  
+  - open file in an internal viewer (with highlights + jump to line)
+  - open file location in system file manager
+- ⚙️ Configurable file extensions (CSV list or `*` for defaults)
+- Cross-platform: Windows, macOS, Linux
 
 ---
 
