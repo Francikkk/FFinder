@@ -1,7 +1,7 @@
 import os
 
 from PySide6.QtCore import QModelIndex, Slot
-from PySide6.QtGui import QAction, QIcon, QTextCharFormat, QTextCursor
+from PySide6.QtGui import QIcon, QTextCharFormat, QTextCursor
 from PySide6.QtWidgets import (
     QAbstractItemView,
     QCheckBox,
@@ -22,9 +22,9 @@ from PySide6.QtWidgets import (
     QWidget,
 )
 
-from src.controller import SearchController
-from src.model import ResultsTableModel
-from src.utilities import SearchRecord, open_in_file_manager_select
+from controller import SearchController
+from model import ResultsTableModel
+from utilities import SearchRecord, open_in_file_manager_select
 
 # ----------------------------
 # View
@@ -51,6 +51,9 @@ class MainWindow(QMainWindow):
         # Build UI
         central = QWidget(self)
         self.setCentralWidget(central)
+        menu_bar = self.menuBar()
+        menu_bar.setNativeMenuBar(False)
+        menu_bar.setVisible(False)  # Remove the default (empty) menu bar
         root_layout = QVBoxLayout(central)
 
         # Top input group
@@ -65,18 +68,25 @@ class MainWindow(QMainWindow):
         self.ext_combo.setEditable(True)
         self.ext_combo.addItems(
             [
-                "config,xml,json,ini",
+                "txt",
+                "log",
                 "xml",
                 "json",
                 "ini",
-                "config",
-                "yaml",
-                "yml",
+                "yaml,yml",
                 "toml",
-                "cfg",
-                "txt",
+                "cfg,",
+                "conf",
+                "csv",
+                "md",
                 "*",
             ]
+        )
+        self.ext_combo.setCurrentIndex(
+            -1
+        )  # keep line edit empty for placeholder
+        self.ext_combo.lineEdit().setPlaceholderText(
+            "e.g. txt,log,json or * for all the supported types"
         )
         self.include_names_check = QCheckBox(
             "Include matches from file names", self
@@ -94,7 +104,7 @@ class MainWindow(QMainWindow):
         inputs_layout.addWidget(self.search_edit, 1, 1)
         inputs_layout.addWidget(self.start_btn, 1, 2)
 
-        inputs_layout.addWidget(QLabel("File types (CSV or *):"), 2, 0)
+        inputs_layout.addWidget(QLabel("File types:"), 2, 0)
         inputs_layout.addWidget(self.ext_combo, 2, 1)
         inputs_layout.addWidget(self.include_names_check, 2, 2)
 
@@ -130,11 +140,6 @@ class MainWindow(QMainWindow):
         # Actions
         self.path_btn.clicked.connect(self.choose_folder)
         self.start_btn.clicked.connect(self.on_start_clicked)
-
-        # Menu (optional: Quit)
-        quit_act = QAction("Quit", self)
-        quit_act.triggered.connect(self.close)
-        self.menuBar().addAction(quit_act)
 
         # Keep last search text for highlight
         self._last_needle: str = ""

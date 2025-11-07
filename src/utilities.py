@@ -11,6 +11,7 @@ from dataclasses import dataclass
 
 DEFAULT_EXTENSIONS = [
     ".config",
+    ".conf",
     ".xml",
     ".json",
     ".ini",
@@ -19,6 +20,9 @@ DEFAULT_EXTENSIONS = [
     ".toml",
     ".cfg",
     ".txt",
+    ".log",
+    ".md",
+    ".csv",
 ]
 
 

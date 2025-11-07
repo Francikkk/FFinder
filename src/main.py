@@ -3,8 +3,8 @@ import sys
 from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import QApplication
 
-from src.utilities import resource_path
-from src.view import MainWindow
+from utilities import resource_path
+from view import MainWindow
 
 # ----------------------------
 # Main entry

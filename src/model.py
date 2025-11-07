@@ -12,7 +12,7 @@ from PySide6.QtCore import (
     Slot,
 )
 
-from src.utilities import SearchRecord, truncate_line
+from utilities import SearchRecord, truncate_line
 
 # ----------------------------
 # Model (search logic)
