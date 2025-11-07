@@ -22,9 +22,9 @@ from PySide6.QtWidgets import (
     QWidget,
 )
 
-from controller import SearchController
-from model import ResultsTableModel
-from utilities import SearchRecord, open_in_file_manager_select
+from .controller import SearchController
+from .model import ResultsTableModel
+from .utilities import SearchRecord, open_in_file_manager_select
 
 # ----------------------------
 # View
@@ -73,10 +73,13 @@ class MainWindow(QMainWindow):
                 "xml",
                 "json",
                 "ini",
-                "yaml,yml",
+                "yaml",
+                "yml",
                 "toml",
-                "cfg,",
+                "cfg",
                 "conf",
+                "config",
+                "html",
                 "csv",
                 "md",
                 "*",

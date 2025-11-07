@@ -2,8 +2,8 @@ import os
 
 from PySide6.QtCore import QObject, QThread, Signal
 
-from model import SearchWorker
-from utilities import SearchRecord, sanitize_extensions
+from .model import SearchWorker
+from .utilities import SearchRecord, sanitize_extensions
 
 # ----------------------------
 # Controller
